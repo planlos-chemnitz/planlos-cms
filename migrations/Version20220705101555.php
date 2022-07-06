@@ -14,7 +14,7 @@ final class Version20220705101555 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Intial Event-Entity';
+        return 'Intial event entity';
     }
 
     public function up(Schema $schema): void

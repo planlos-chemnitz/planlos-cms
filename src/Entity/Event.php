@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EventRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
@@ -11,28 +12,31 @@ class Event
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private string $name;
 
     #[ORM\Column(type: 'text')]
-    private $description;
+    private string $description;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private $content;
+    private string $content;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $location;
+    private string $location;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $startDateTime;
+    private DateTimeImmutable $startDateTime;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $endDateTime;
+    private DateTimeImmutable $endDateTime;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $status;
+    private string $slug;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $isActive;
 
     public function getId(): ?int
     {
@@ -87,38 +91,50 @@ class Event
         return $this;
     }
 
-    public function getStartDateTime(): ?\DateTimeImmutable
+    public function getStartDateTime(): ?DateTimeImmutable
     {
         return $this->startDateTime;
     }
 
-    public function setStartDateTime(\DateTimeImmutable $startDateTime): self
+    public function setStartDateTime(DateTimeImmutable $startDateTime): self
     {
         $this->startDateTime = $startDateTime;
 
         return $this;
     }
 
-    public function getEndDateTime(): ?\DateTimeImmutable
+    public function getEndDateTime(): ?DateTimeImmutable
     {
         return $this->endDateTime;
     }
 
-    public function setEndDateTime(\DateTimeImmutable $endDateTime): self
+    public function setEndDateTime(DateTimeImmutable $endDateTime): self
     {
         $this->endDateTime = $endDateTime;
 
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getSlug(): ?string
     {
-        return $this->status;
+        return $this->slug;
     }
 
-    public function setStatus(string $status): self
+    public function setSlug(string $slug): self
     {
-        $this->status = $status;
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function isIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }
